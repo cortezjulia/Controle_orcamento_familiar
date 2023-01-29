@@ -1,3 +1,10 @@
+import os
+
+
+
+op_int=0
+j=0
+var=0
 valores=[]
 meses=[]
 itens=[]
@@ -25,7 +32,7 @@ def menu_ini():
    
     print('*******Planilha de Controle de Orçamento Familiar******')
     
-    print("                        ",*meses_oficiais, sep = "  ")
+    print("                          ",*meses_oficiais, sep = "  ")
     
     print('',sep='\n')
     print('RENDA FAMILIAR --> DIGITE 1')
@@ -68,9 +75,11 @@ def menu_ini():
         if op.isdigit()==False:
             continue
         else:
-            if int(op)<0 or int(op)>9:
+            if int(op)<1 or int(op)>9:
                 continue
             else:
+                global op_int
+                op_int=int(op)
                 break
 
 
@@ -88,132 +97,111 @@ def recebe_valores(item,valor,mes):
         print(salvo)
 
 def imprime_valores():
-    j=0
-    while True:
-        flag_itens=0
-        i=0
         
-
+   
+        flag_itens=0
+        global j
+        global op_int
+        i=0
         while i<len(meses_oficiais) and flag_itens==0:
-            if meses_oficiais[i]==meses[i]:
+            if meses_oficiais[i]==meses[j]:
                 flag_itens=1
             i+=1
         #renda
-        i=0
-        while i<len(renda):
+        if op_int==1:
+            i=0
+            while i<len(renda):
+                
+                if renda[i]==itens[j]:
+                    valores_oficiais_renda.insert(j,valores[j])
             
-            if renda[i]==itens[j]:
-                valores_oficiais_renda.insert(i,valores[i])
-           
-            i+=1
+                i+=1
         #habitação
         #i=0
         #while i<len(habitacao):
          #   if habitacao[i]==itens[j]:
           #      valores_oficiais_habi.insert(i,valores[i])
             
-            i+=1
+          #  i+=1
         #saude
-        i=0
-        while i<len(saude):
-           
-            if saude[i]==itens[j]:
-                valores_oficiais_saude.insert(i,valores[i])
+        elif op_int==2:
+            i=0
+            while i<len(saude):
             
-            i+=1
+                if saude[i]==itens[j]:
+                    valores_oficiais_saude.insert(j,valores[j])
+                
+                i+=1
         #imposto
-        i=0
-        while i<len(imposto):
+        elif op_int==3:
+            i=0
+            while i<len(imposto):
            
-            if imposto[i]==itens[j]:
-                valores_oficiais_impo.insert(i,valores[i])  
+                if imposto[i]==itens[j]:
+                    valores_oficiais_impo.insert(j,valores[j])  
             
-            i+=1
+                i+=1
         #auto
-        i=0
-        while i<len(auto):
-           
-            if auto[i]==itens[j]:
-                valores_oficiais_auto.insert(i,valores[i])
-           
-            i+=1
+        elif op_int==4:
+            i=0
+            while i<len(auto):
+            
+                if auto[i]==itens[j]:
+                    valores_oficiais_auto.insert(j,valores[j])
+            
+                i+=1
         #desp_pessoais
-        i=0
-        while i<len(desp_pessoais):
+        elif op_int==5:
+            i=0
+            while i<len(desp_pessoais):
+                
+                if desp_pessoais[i]==itens[j]:
+                    valores_oficiais_desppes.insert(j,valores[j]) 
+                
+                i+=1
             
-            if desp_pessoais[i]==itens[j]:
-                valores_oficiais_desppes.insert(i,valores[i]) 
-            
-            i+=1
-        
         #dependentes
-        i=0
-        while i<len(depententes):
+        elif op_int==6:
+            i=0
+            while i<len(depententes):
+                
+                if depententes[i]==itens[j]:
+                    valores_oficiais_depe.insert(j,valores[j]) 
             
-            if depententes[i]==itens[j]:
-                valores_oficiais_depe.insert(i,valores[i]) 
-           
-            i+=1
+                i+=1
 
         #lazer
-        i=0
-        while i<len(lazer):
-           
-            if lazer[i]==itens[j]:
-                valores_oficiais_lazer.insert(i,valores[i]) 
-           
-            i+=1
+        elif op_int==7:
+            i=0
+            while i<len(lazer):
+            
+                if lazer[i]==itens[j]:
+                    valores_oficiais_lazer.insert(j,valores[j]) 
+            
+                i+=1
         #investimentos
-        i=0
-        while i<len(investimentos):
-            
-            if investimentos[i]==itens[j]:
-                valores_oficiais_inv.insert(i,valores[i])
-            
-            i+=1
+        elif op_int==8:
+            i=0
+            while i<len(investimentos):
+                
+                if investimentos[i]==itens[j]:
+                    valores_oficiais_inv.insert(j,valores[j])
+                
+                i+=1
+        j+=1
+        
         
         print('*******Planilha de Controle de Orçamento Familiar******')
     
-        print("                        ",*meses_oficiais, sep = "  ")
-    
-        print('',sep='\n')
-        print('***RENDA FAMILIAR***')
-        print('',sep='\n')
-        print(*renda,sep = "\n")
-        print('',sep='\n')
-        print('***HABITAÇÃO***')
-        print('',sep='\n')
-        print(*habitacao, sep = "\n")
-        print('',sep='\n')
-        print('***SAÚDE***')
-        print('',sep='\n')
-        print(*saude, sep = "\n")
-        print('',sep='\n')
-        print('***IMPOSTOS***')
-        print('',sep='\n')
-        print(*imposto, sep = "\n")
-        print('',sep='\n')
-        print('***AUTOMÓVEL***')
-        print('',sep='\n')
-        print(*auto, sep = "\n")
-        print('',sep='\n')
-        print('***DESPESAS PESSOAIS***')
-        print('',sep='\n')
-        print(*desp_pessoais, sep = "\n")
-        print('',sep='\n')
-        print('***DEPENDENTES***')
-        print('',sep='\n')
-        print(*depententes, sep = "\n")
-        print('',sep='\n')
-        print('***LAZER***')
-        print('',sep='\n')
-        print(*lazer, sep = "\n")
-        print('',sep='\n')
-        print('***INVESTIMENTOS***')
-        print('',sep='\n')
-        print(*investimentos, sep = "\n")
-        break
-        j+=1
+        print("                          ",*meses_oficiais, sep = "  ")
+        
+        k=0
+        while k<len(renda):
+            print(renda[k],valores_oficiais_renda[k],sep='---',end='\n') 
+            k+=1          
+        
+        
+        
         
 
 
@@ -225,9 +213,9 @@ while True:
     item_usuario=input('Insira o item: ')
     valor_usuario=input('Insira o valor: ')
     recebe_valores(item_usuario,valor_usuario,mes_usuario)
-
+    os.system('cls') 
     imprime_valores()
-        
+       
 
 
 
