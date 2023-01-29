@@ -1,5 +1,7 @@
+#PROJETO DE TABELA PARA CONTROLE DE ORÇAMENTO FAMILIAR
+#OBJETIVO É EXERCITAR AS TÉCNICAS DE CONSTRUÇÃO DE FUNÇOES E TRABALHO COM LISTAS
 import os
-os.system('cls') 
+
 
 
 op_int=0
@@ -18,6 +20,8 @@ valores_oficiais_desppes=['','','','','','','','']
 valores_oficiais_depe=['','','','','','','','']
 valores_oficiais_lazer=['','','','','','','']
 valores_oficiais_inv=['','','']
+
+#LISTA DE VALORES PRÉ-DEFINIDOS DE PARAMETROS PARA USUÁRIO ALTERAR
 meses_oficiais=['JAN','FEV','MAR','ABR','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ']
 renda=['Salários','13º Salário','Férias','Renda extra','Alugueis','Juros de Investimento']
 habitacao=['Prestação de compra','Aluguel','Água','IPTU','Luz','Telefone','TV por assinatura','Supermercado','Empregada','Reformas']
@@ -29,8 +33,9 @@ depententes=['Escola/Faculdade','Cursos Extras','Material escolar','Esportes/Uni
 lazer=['Restaurantes','Restaurantes','Livraria','Streamings','Passagens','Hotéis','Passeios']
 investimentos=['Previdência','Investimentos carro','Aplicações']
 
+#FUNÇÃO PARA GERAR MENU PRINCIPAL E RECEBER ESCOLHA DO USUARIO 
 def menu_ini():
-   
+    os.system('cls') 
     print('*******Planilha de Controle de Orçamento Familiar******')
     
     print("                          ",*meses_oficiais, sep = "  ")
@@ -73,8 +78,10 @@ def menu_ini():
     print(*investimentos, sep = "\n")
     while True:
         op=input('Insira o número correspondente ao tipo de gasto que quer inserir: ')
+        #VERIFICA SE HÁ APENAS NUMEROS
         if op.isdigit()==False:
             continue
+        #VERIFICA SE VALOR ESTÁ NA FAIXA PERMITIDA
         else:
             if int(op)<1 or int(op)>9:
                 continue
@@ -84,7 +91,7 @@ def menu_ini():
                 break
 
 
-
+#RECEBE OS VALORES DE MES, ITEM E VALOR QUE O USUARIO QUER ADICIONAR A TABELA
 def recebe_valores(item,valor,mes):
    
     valores.append(valor)
@@ -96,6 +103,7 @@ def recebe_valores(item,valor,mes):
         print(salvo)
     for salvo in meses:
         print(salvo)
+
 
 def imprime_valores():
         
@@ -211,28 +219,12 @@ def imprime_valores():
             posicao_palavra=len(renda[k])
             posicao_final=posicao-posicao_palavra
             item_printar=renda[k]+(posicao_final*' ')
-            print(item_printar[k],valores_oficiais_renda[k]) 
+            print(renda[k],item_printar[k],end="\n") 
             
             k+=1          
 
-        k=0
-        while k<len(saude):
 
-            posicao_palavra=len(saude[k])
-            posicao_final=posicao-posicao_palavra
-            item_printar=saude[k]+(posicao_final*' ')
-            print(item_printar,posicao_palavra)
-            
-            k+=1          
-        
               
-        
-        
-        
-
-
-
-
 while True:
     menu_ini()
     mes_usuario=input('Insira o mês: ')
