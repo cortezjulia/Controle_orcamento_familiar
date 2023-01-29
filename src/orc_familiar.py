@@ -1,10 +1,11 @@
 import os
-
+os.system('cls') 
 
 
 op_int=0
 j=0
-var=0
+posicao_ref=28
+posicao=30
 valores=[]
 meses=[]
 itens=[]
@@ -102,10 +103,19 @@ def imprime_valores():
         flag_itens=0
         global j
         global op_int
+        global posicao
+        global posicao_ref
+ 
         i=0
         while i<len(meses_oficiais) and flag_itens==0:
             if meses_oficiais[i]==meses[j]:
                 flag_itens=1
+                if i==0:
+                    posicao_ref=28
+                    posicao=posicao_ref
+                else:
+
+                    posicao=posicao_ref+(i*5)    
             i+=1
         #renda
         if op_int==1:
@@ -113,7 +123,7 @@ def imprime_valores():
             while i<len(renda):
                 
                 if renda[i]==itens[j]:
-                    valores_oficiais_renda.insert(j,valores[j])
+                    valores_oficiais_renda.insert(i,valores[j])
             
                 i+=1
         #habitação
@@ -129,7 +139,7 @@ def imprime_valores():
             while i<len(saude):
             
                 if saude[i]==itens[j]:
-                    valores_oficiais_saude.insert(j,valores[j])
+                    valores_oficiais_saude.insert(i,valores[j])
                 
                 i+=1
         #imposto
@@ -138,7 +148,7 @@ def imprime_valores():
             while i<len(imposto):
            
                 if imposto[i]==itens[j]:
-                    valores_oficiais_impo.insert(j,valores[j])  
+                    valores_oficiais_impo.insert(i,valores[j])  
             
                 i+=1
         #auto
@@ -147,7 +157,7 @@ def imprime_valores():
             while i<len(auto):
             
                 if auto[i]==itens[j]:
-                    valores_oficiais_auto.insert(j,valores[j])
+                    valores_oficiais_auto.insert(i,valores[j])
             
                 i+=1
         #desp_pessoais
@@ -156,7 +166,7 @@ def imprime_valores():
             while i<len(desp_pessoais):
                 
                 if desp_pessoais[i]==itens[j]:
-                    valores_oficiais_desppes.insert(j,valores[j]) 
+                    valores_oficiais_desppes.insert(i,valores[j]) 
                 
                 i+=1
             
@@ -166,7 +176,7 @@ def imprime_valores():
             while i<len(depententes):
                 
                 if depententes[i]==itens[j]:
-                    valores_oficiais_depe.insert(j,valores[j]) 
+                    valores_oficiais_depe.insert(i,valores[j]) 
             
                 i+=1
 
@@ -176,7 +186,7 @@ def imprime_valores():
             while i<len(lazer):
             
                 if lazer[i]==itens[j]:
-                    valores_oficiais_lazer.insert(j,valores[j]) 
+                    valores_oficiais_lazer.insert(i,valores[j]) 
             
                 i+=1
         #investimentos
@@ -185,7 +195,7 @@ def imprime_valores():
             while i<len(investimentos):
                 
                 if investimentos[i]==itens[j]:
-                    valores_oficiais_inv.insert(j,valores[j])
+                    valores_oficiais_inv.insert(i,valores[j])
                 
                 i+=1
         j+=1
@@ -197,9 +207,25 @@ def imprime_valores():
         
         k=0
         while k<len(renda):
-            print(renda[k],valores_oficiais_renda[k],sep='---',end='\n') 
+
+            posicao_palavra=len(renda[k])
+            posicao_final=posicao-posicao_palavra
+            item_printar=renda[k]+(posicao_final*' ')
+            print(item_printar[k],valores_oficiais_renda[k]) 
+            
+            k+=1          
+
+        k=0
+        while k<len(saude):
+
+            posicao_palavra=len(saude[k])
+            posicao_final=posicao-posicao_palavra
+            item_printar=saude[k]+(posicao_final*' ')
+            print(item_printar,posicao_palavra)
+            
             k+=1          
         
+              
         
         
         
